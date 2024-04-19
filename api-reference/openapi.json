@@ -1,8 +1,27 @@
 {
   "openapi": "3.0.0",
+  "info": {
+    "title": "Scannable",
+    "description": "Scannable API",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "security": [
+    {
+      "TokenAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+
   "paths": {
     "/products": {
       "post": {
+        "summary": "Create product",
         "operationId": "create",
         "parameters": [],
         "requestBody": {
@@ -23,6 +42,7 @@
         "tags": ["Products"]
       },
       "get": {
+        "summary": "List products",
         "operationId": "findAll",
         "parameters": [],
         "responses": {
@@ -35,10 +55,13 @@
     },
     "/products/{id}": {
       "get": {
+        "summary": "Get product by ID",
         "operationId": "findOne",
+        "description": "Select a single product based on the ID supplied",
         "parameters": [
           {
             "name": "id",
+            "description": "ID of product to return",
             "required": true,
             "in": "path",
             "schema": {
@@ -169,15 +192,17 @@
       }
     }
   },
-  "info": {
-    "title": "Scannable",
-    "description": "Scannable API",
-    "version": "1.0",
-    "contact": {}
-  },
-  "tags": [],
-  "servers": [],
+
   "components": {
+    "securitySchemes": {
+      "TokenAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Prefix the value with \"X-Scannable-Access-Token\" to indicate the custom authorization type"
+      }
+    },
+
     "schemas": {
       "UpdateProductDataInput": {
         "type": "object",

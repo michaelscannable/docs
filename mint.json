@@ -2,10 +2,10 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Scannable - Starter Kit",
   "logo": {
-    "dark": "/logo/scannable-dashboard-logo.svg",
-    "light": "/logo/scannable-dashboard-logo.svg"
+    "dark": "/logo/scannable-new-logo-dark.svg",
+    "light": "/logo/scannable-new-logo.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logo/scannable-icon.svg",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
@@ -15,6 +15,7 @@
       "to": "#07C983"
     }
   },
+  "openapi": "http://localhost:3000/api/docs-json",
   "topbarLinks": [
     {
       "name": "Support",
@@ -23,12 +24,16 @@
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.scannable.io"
+    "url": "https://app.scannable.io"
   },
   "tabs": [
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Release Notes",
+      "url": "release-notes"
     }
   ],
   "anchors": [
@@ -54,6 +59,10 @@
       "pages": ["introduction", "quickstart", "development"]
     },
     {
+      "group": "Release Notes",
+      "pages": ["release-notes/overview"]
+    },
+    {
       "group": "Essentials",
       "pages": [
         "essentials/markdown",
@@ -68,20 +77,36 @@
       "group": "API Documentation",
       "pages": ["api-reference/introduction"]
     },
+
     {
-      "group": "Endpoint Examples",
+      "group": "Products",
       "pages": [
-        "api-reference/products/get-products-1",
         "api-reference/products/get-products",
         "api-reference/products/post-products",
-        "api-reference/product-variations/update-data-field",
-        "api-reference/product-variations/update-product-variation"
+        "api-reference/products/get-products-1"
       ]
+    },
+    {
+      "group": "Product Variations",
+      "pages": [
+        "api-reference/product-variations/update-product-variation",
+        "api-reference/product-variations/update-data-field"
+      ]
+    },
+    {
+      "group": "Product categories",
+      "pages": [
+        "api-reference/product-categories/get-all-product-categories-with-metadata"
+      ]
+    },
+    {
+      "group": "Data fields",
+      "pages": ["api-reference/data-fields/get-all-data-fields"]
     }
   ],
   "footerSocials": {
     "x": "https://x.com/scannable",
-    "github": "https://github.com/scannable",
-    "linkedin": "https://www.linkedin.com/company/scannable"
+    "github": "https://github.com//scannable-io",
+    "linkedin": "https://www.linkedin.com/company/scannable-io"
   }
 }
