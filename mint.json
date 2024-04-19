@@ -1,6 +1,6 @@
 {
-  "$schema": "https://scannableio.com/schema.json",
-  "name": "Scannable",
+  "$schema": "https://scannable.com/schema.json",
+  "name": "Starter Kit",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -18,12 +18,12 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@scannableio.com"
+      "url": "mailto:hi@mintlify.com"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://app.scannableio.com"
+    "url": "https://dashboard.mintlify.com"
   },
   "tabs": [
     {
@@ -35,17 +35,17 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://scannableio.com/docs"
+      "url": "https://scannable.com/docs"
     },
     {
       "name": "Community",
       "icon": "slack",
-      "url": "https://scannableio.com/community"
+      "url": "https://scannable.com/community"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://scannableio.com/blog"
+      "url": "https://scannable.com/blog"
     }
   ],
   "navigation": [
@@ -71,17 +71,17 @@
     {
       "group": "Endpoint Examples",
       "pages": [
-        "api-reference/endpoint/products/get-products-1",
-        "api-reference/endpoint/products/get-products",
-        "api-reference/endpoint/products/post-products",
-        "api-reference/endpoint/product-variations/update-data-field",
-        "api-reference/endpoint/product-variations/update-product-variation"
+        "api-reference/products/get-products-1",
+        "api-reference/products/get-products",
+        "api-reference/products/post-products",
+        "api-reference/product-variations/update-data-field",
+        "api-reference/product-variations/update-product-variation"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/scannableio",
-    "github": "https://github.com/scannableio",
+    "x": "https://x.com/scannable",
+    "github": "https://github.com/scannable",
     "linkedin": "https://www.linkedin.com/company/scannable"
   }
 }
