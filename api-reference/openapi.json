@@ -1,194 +1,315 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
-  },
-  "servers": [
-    {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
+  "openapi": "3.0.0",
   "paths": {
-    "/plants": {
+    "/products": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProductInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": ["Products"]
+      },
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "operationId": "findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": ["Products"]
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "operationId": "findOne",
         "parameters": [
           {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
+            "name": "id",
+            "required": true,
+            "in": "path",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "number"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": ""
+          }
+        },
+        "tags": ["Products"]
+      }
+    },
+    "/product-variations/{publicId}": {
+      "patch": {
+        "operationId": "update",
+        "summary": "Update product variation",
+        "parameters": [
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProductVariationInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": ["Product Variations"]
+      }
+    },
+    "/product-variations/{publicId}/data": {
+      "patch": {
+        "operationId": "updateMetadata",
+        "summary": "Update data field",
+        "parameters": [
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProductDataInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": ["Product Variations"]
+      }
+    },
+    "/product-category/{id}": {
+      "get": {
+        "operationId": "findGroupsWithMetadata",
+        "summary": "Get all product categories with metadata",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": ["Product categories"]
+      }
+    },
+    "/data-fields": {
+      "get": {
+        "operationId": "findMetadata",
+        "summary": "Get all data fields",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of data fields",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Plant"
+                    "$ref": "#/components/schemas/Metadata"
                   }
                 }
               }
             }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
           }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
         },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
+        "tags": ["Data fields"],
+        "security": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
+            "bearer": []
           }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
+        ]
       }
     }
   },
+  "info": {
+    "title": "Scannable",
+    "description": "Scannable API",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
   "components": {
     "schemas": {
-      "Plant": {
+      "UpdateProductDataInput": {
+        "type": "object",
+        "properties": {
+          "metadataId": {
+            "type": "number"
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "FilesInput": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "image",
+              "doc",
+              "instructions",
+              "splicing_instructions",
+              "info_sheet",
+              "splice_certificate",
+              "manufacturers_inspection_instructions",
+              "uploads_1"
+            ]
+          }
+        },
+        "required": ["filename", "type"]
+      },
+      "VariationInput": {
+        "type": "object",
+        "properties": {
+          "partNumber": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "ean": {
+            "type": "string"
+          },
+          "dataFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateProductDataInput"
+            }
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilesInput"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["PUBLISHED", "UNPUBLISHED"],
+            "default": "PUBLISHED"
+          }
+        },
         "required": [
-          "name"
-        ],
+          "partNumber",
+          "name",
+          "ean",
+          "dataFields",
+          "files",
+          "status"
+        ]
+      },
+      "CreateProductInput": {
         "type": "object",
         "properties": {
           "name": {
-            "description": "The name of the plant",
             "type": "string"
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
+          "variations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VariationInput"
+            }
           },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
+          "manufacturerId": {
+            "type": "number"
+          },
+          "productGroupId": {
+            "type": "number"
+          },
+          "isAssembly": {
+            "type": "boolean"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "number"
             }
           }
+        },
+        "required": [
+          "name",
+          "variations",
+          "manufacturerId",
+          "productGroupId"
         ]
       },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
+      "UpdateProductVariationInput": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
+          "ean": {
+            "type": "string",
+            "nullable": true
           },
-          "message": {
+          "code": {
             "type": "string"
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      },
+      "Metadata": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": ["key", "name"]
       }
     }
   }
